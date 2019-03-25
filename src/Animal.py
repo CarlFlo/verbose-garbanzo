@@ -7,7 +7,7 @@ class Animal:
         pass
 
     def speak(self):
-        print(type(self), self.name, "screams" , self.sound)
+        print(type(self), self.name, " screams " , self.sound, " and dies")
 
 class Dog(Animal):
     def __init__(self, name):
