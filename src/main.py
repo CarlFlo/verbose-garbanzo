@@ -3,9 +3,13 @@ import Animal as a
 
 def main():
 
-    obj = a.Dog("Hund")
+    obj1 = a.Cat("Cat")
+    obj2 = a.Dog("Dog")
+    obj3 = a.Horse("Horse")
 
     print("================")
-    obj.speak()
+    obj1.speak()
+    obj2.speak()
+    obj3.speak()
 
 main()
