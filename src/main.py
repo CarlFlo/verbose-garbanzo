@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Animal as a
 
 
@@ -10,9 +9,3 @@ def main():
     obj.speak()
 
 main()
-=======
-def my_func():
-    print("Hejsan")
-
-my_func() 
->>>>>>> m
