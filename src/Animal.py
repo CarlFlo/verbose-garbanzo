@@ -7,7 +7,12 @@ class Animal:
         pass
 
     def speak(self):
-        print(type(self), self.name, " screams " , self.sound, " and dies")
+        print(type(self), self.name, "screams" , self.sound, "and dies")
+    
+    def dies(self):
+        print('{} just died and let out its last {}'.format(self.name, self.sound))
+        pass
+
 
 class Dog(Animal):
     def __init__(self, name):
@@ -19,13 +24,5 @@ class Horse(Animal):
         self.name = name
         self.sound = "neigh"
 
-class Cat(Animal):
-    def __init__(self, name):
-        self.name = name
-        self.sound = "meow"
-
-        
-
-
-
+#
 
