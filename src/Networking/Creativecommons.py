@@ -1,7 +1,7 @@
 from os import system
 import requests
 
-min = 1
+min = 0
 max = 100
 cc = {}
 
@@ -17,7 +17,7 @@ def farm():
         r = requests.get(reqURL)
 
         if (r.status_code != 200):
-            addToMap("Error")
+            addToMap("error")
             continue
 
         data = r.json()
@@ -31,7 +31,7 @@ def farm():
                 pass
 
         if(len(line) == 0):
-            addToMap("No length")
+            addToMap("no data")
             continue
 
         line = line.split("#")[1]
