@@ -18,13 +18,15 @@ class muscle:
     def getDescription(self):
         return self.desc
 
+####
+
 
 class muscles:
 
     _muscles = {}
 
     def addMuscle(self, muscle):
-        self._muscles[muscle.getName] = muscle
+        self._muscles[muscle.getName()] = muscle
 
     def getMuscle(self, name):
         return self._muscles[name]
@@ -32,14 +34,35 @@ class muscles:
 
 class exercise:
 
-    def __init__(self, name, muscle):
+    def __init__(self, name, muscles):
         self.name = name
-        self.name = muscle  # hämta från muscles klassen
+        self.muscles = {}
+        for e in muscles:
+            self.muscles[e.getName] = e
+
+    def getName(self):
+        return self.name
+
+    def getTargetMuscles(self):
+        return self.muscles
+
+    def getTargetMuscle(self, name):
+        return self.muscles[name]
 
 
+####
 class exercises:
 
     _exercises = {}
 
     def addExercise(self, exercise):
-        pass
+        self._exercises[exercise.getName()] = exercise
+
+    def searchTargetMuscle(self, name):
+        for key in self._exercises:
+            e = self._exercises[key]
+
+            data = e.getTargetMuscle(name)
+
+            if(data is not None):
+                print(e.getName())
