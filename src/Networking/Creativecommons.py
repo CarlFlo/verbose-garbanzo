@@ -1,14 +1,20 @@
 from os import system
-import requests
+import requests, datetime
 
 min = 0
-max = 100
+max = 500
 cc = {}
 
 def farm():
-    for i in range(min,max):
 
-        pro = str.format("{0:.2f} precent done", (i/max)*100)
+    timeLeft = 0.0
+
+    for i in range(min, max):
+        startTime = datetime.datetime.now()
+
+        percentage = (i/max)*100
+
+        pro = str.format("{0:.2f} {1} done {2:.1f} seconds left", percentage, '%', (timeLeft*(max-i)))
 
         system("title " + pro)
 
@@ -37,6 +43,8 @@ def farm():
         line = line.split("#")[1]
 
         addToMap(line)
+        endTime = datetime.datetime.now()
+        timeLeft = (endTime-startTime).total_seconds()
 
 
 def addToMap(_key):

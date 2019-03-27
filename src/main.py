@@ -1,6 +1,6 @@
-import math, requests
+import math, requests, time
 
-# K-samsök supports JOSN if given the following Accept header
+# K-samsök supports JSON if given the following Accept header
 headers = {
     'Accept': 'application/json'
 }
@@ -10,6 +10,7 @@ headers = {
 endpoint = 'http://www.kulturarvsdata.se/ksamsok/api'
 endpoint_fields = '{}?&x-api=test&method=search&hitsPerPage=500&recordSchema=xml'.format(endpoint)
 endpoint_facet = '{}?&x-api=test&method=statisticSearch&removeBelow=1'.format(endpoint)
+
 
 # K-samsök uses the query language CQL
 # it allows you to create very advanced queries
