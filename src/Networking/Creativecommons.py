@@ -8,7 +8,7 @@ cc = {}
 def farm():
     for i in range(min,max):
 
-        pro = str.format("{0:.2f} precent of porn found", (i/max)*100)
+        pro = str.format("{0:.2f} precent done", (i/max)*100)
 
         system("title " + pro)
 
@@ -41,7 +41,7 @@ def farm():
 
 def addToMap(_key):
     try:
-        cc[_key] = cc[_key]+1
+        cc[_key] += 1
     except:
         cc[_key] = 1
 
