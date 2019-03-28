@@ -32,13 +32,19 @@ class Program:
         day1.addExercise("Flat Barbell Bench Press")
         day1.addExercise("Squat Barbell Bench Curl")
         day1.addExercise("Pushups")
-
-        print("Show Exercises(y/n)")
-        ans = input()
-        if ans == "y":
-            day1.printExercises()
-        else:
-            print("Ok then, keep your secrets")
+        while(True):
+            
+            print("--------------------------------------")
+            print("welcome to davcar's ultimate swole app")
+            print("Create day")
+            ans = input()
+            day = day.Day("ans")
+            print("Show your exercises(y/n)")
+            ans = input()
+            if ans == "y":
+                day1.printExercises()
+            else:
+                print("Ok then, keep your secrets")
 
 
 
