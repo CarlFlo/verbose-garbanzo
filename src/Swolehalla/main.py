@@ -1,24 +1,52 @@
+from typing import Dict
 from os import system
-import swole
+from POCO import exercise, exercises, muscle, muscles, day
+
+
+class Program:
+
+    def run(self):
+        biceps = muscle.muscle("Biceps", "desc")
+        triceps = muscle.muscle("Triceps", "desc")
+        deltoidAnterior = muscle.muscle("Deltoid Anterior", "desc")
+        pectoralis = muscle.muscle("Pectoralis", "desc")
+
+        _muscles = muscles.muscles()
+        _muscles.addMuscles(biceps, triceps, deltoidAnterior, pectoralis)
+
+        for e in _muscles.yieldMuscles():
+            print(e.getName())
+
+        bench = exercise.exercise("Flat Barbell Bench Press", "intermediate", {
+            triceps, deltoidAnterior, pectoralis})
+        pushups = exercise.exercise("Pushups", "beginner", {
+            triceps, deltoidAnterior, pectoralis})
+
+        myExercises = exercises.exercises()
+        myExercises.addExercises(bench, pushups)
+
+        myExercises.searchTargetMuscleInExercises("Triceps")
+
+        day1 = day.Day("push")
+        day1.addExercise("Flat Barbell Bench Press")
+        day1.addExercise("Squat Barbell Bench Curl")
+        day1.addExercise("Pushups")
+
+        print("Show Exercises(y/n)")
+        ans = input()
+        if ans == "y":
+            day1.printExercises()
+        else:
+            print("Ok then, keep your secrets")
+
+        raise Exception("walla svär du?")
+
 
 system("cls")
-
-biceps = swole.muscle("Biceps", "desc")
-Triceps = swole.muscle("Triceps", "desc")
-DeltoidAnterior = swole.muscle("Deltoid Anterior", "desc")
-Pectoralis = swole.muscle("Pectoralis", "desc")
-
-_muscles = swole.muscles()
-_muscles.addMuscle(biceps)
-
-bench = swole.exercise("Flat Barbell Bench Press", {Triceps, DeltoidAnterior, Pectoralis})
-
-myExercises = swole.exercises()
-myExercises.addExercise(bench)
-
-myExercises.searchTargetMuscle("Triceps")
-
-"""
-for e in bench.getTargetMuscles():
-    print(e.getName(), e.getDescription())
-"""
+program = Program()
+try:
+    program.run()
+except Exception as e:
+    print("In my country there is problem\n", e)
+finally:
+    print("is it working?")
