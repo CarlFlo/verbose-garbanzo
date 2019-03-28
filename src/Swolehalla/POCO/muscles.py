@@ -1,11 +1,11 @@
 from typing import Dict
 
-import muscle as mu
+from .muscle import muscle
 
 
 class muscles:
 
-    _muscles: Dict[str, mu.muscle] = {}
+    _muscles: Dict[str, muscle] = {}
 
     def addMuscle(self, muscle):
         self._muscles[muscle.getName()] = muscle

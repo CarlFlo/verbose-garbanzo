@@ -1,10 +1,4 @@
-import exercises as ex
-class Routine:
-    def __init__(self):
-        pass
-
-    def showRoutine(self):
-        pass
+from .exercises import exercises as ex
 
 
 class Day:
@@ -18,7 +12,7 @@ class Day:
         if name in ex._exercises:
             self._dayexercises.append(name)
         else:
-            print("Exercise doesnt exist")
+            print("Exercise doesnt exist:", name)
 
     def printExercises(self):
         print(', '.join(self._dayexercises))

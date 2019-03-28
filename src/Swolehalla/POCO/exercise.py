@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict
 
-import muscle as mu
+from .muscle import muscle
 
 
 class ExerciseDifficulty(Enum):
@@ -16,7 +16,7 @@ class ExerciseDifficulty(Enum):
 
 class exercise:
 
-    _muscles: Dict[str, mu.muscle] = {}
+    _muscles: Dict[str, muscle] = {}
 
     def __init__(self, name, difficulty, muscleArr):
         if not ExerciseDifficulty.hasValue(difficulty):

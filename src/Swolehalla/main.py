@@ -40,7 +40,6 @@ class Program:
         else:
             print("Ok then, keep your secrets")
 
-        raise Exception("walla svär du?")
 
 
 system("cls")

@@ -1,11 +1,11 @@
 from typing import Dict
 
-import exercise as ex
+from .exercise import exercise
 
 
 class exercises:
 
-    _exercises: Dict[str, ex.exercise] = {}
+    _exercises: Dict[str, exercise] = {}
 
     def addExercise(self, exercise):
         self._exercises[exercise.getName()] = exercise

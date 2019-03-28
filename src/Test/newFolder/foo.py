@@ -1,4 +1,4 @@
-class foo:
+class foos:
 
-    def foo(self):
+    def fooPrint(self):
         print("yeah")

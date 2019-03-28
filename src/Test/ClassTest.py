@@ -1,14 +1,24 @@
-from newFolder import testImport
+from newFolder import testImport as ti
 
 
-class text:
+class Text:
 
     def __init__(self, inData):
         self.value = inData
 
     def join(self, _list):
-        pass
+        data = ""
+        for e in _list:
+          data += e + self.value  
+        
+        return data
 
 
-here = testImport.test()
+t = Text(",")
+ret = t.join(["1","2"])
+print(ret)
+
+
+here = ti.test()
 here.printThis()
+

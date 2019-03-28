@@ -1,8 +1,10 @@
-import foo
+from .foo import foos
+
 
 class test:
 
     def printThis(self):
-        print("In my country there is problem")
+        x = foos()
+        x.fooPrint()
 
-fee = foo.foo()
+
