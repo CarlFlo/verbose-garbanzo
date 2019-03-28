@@ -1,5 +1,6 @@
-from typing import Dict
 from enum import Enum
+from typing import Dict
+
 import muscle as mu
 
 

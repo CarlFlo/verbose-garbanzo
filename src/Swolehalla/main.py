@@ -1,6 +1,7 @@
-from typing import Dict
 from os import system
-from POCO import exercise, exercises, muscle, muscles, day
+from typing import Dict
+
+from POCO import day, exercise, exercises, muscle, muscles
 
 
 class Program:
