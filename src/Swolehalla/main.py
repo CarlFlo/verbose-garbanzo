@@ -1,6 +1,6 @@
 from os import system
 from typing import Dict
-
+from utils import askConf
 from POCO import day, exercise, exercises, muscle, muscles
 
 
@@ -32,27 +32,22 @@ class Program:
         day1.addExercise("Flat Barbell Bench Press")
         day1.addExercise("Squat Barbell Bench Curl")
         day1.addExercise("Pushups")
+
         while(True):
-            
+
             print("--------------------------------------")
             print("welcome to davcar's ultimate swole app")
-            print("Create day")
-            ans = input()
-            day = day.Day("ans")
-            print("Show your exercises(y/n)")
-            ans = input()
-            if ans == "y":
+            #print("Create day")
+            #ans = input()
+            #day = day.Day("ans")
+
+            if(askConf.askConf("Show your exercises(y/n)")):
                 day1.printExercises()
             else:
                 print("Ok then, keep your secrets")
 
 
-
 system("cls")
 program = Program()
-try:
-    program.run()
-except Exception as e:
-    print("In my country there is problem\n", e)
-finally:
-    print("is it working?")
+
+program.run()

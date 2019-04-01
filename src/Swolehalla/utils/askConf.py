@@ -1,10 +1,10 @@
-def askConf(msgPos, msgNeg, holdUser):
+def askConf(msg):
+
+    print(msg)
 
     ans = input()
     if ans in ["y", "Y", "yes", "Yes"]:
-        return true
+        return True
     else:
-        false
+        return False
 
-
-askConf("yes", "no")

@@ -1,6 +1,0 @@
-def askConf(self):
-ans = input()
-            if ans == "y":
-                day1.printExercises()
-            else:
-                print("Ok then, keep your secrets")
