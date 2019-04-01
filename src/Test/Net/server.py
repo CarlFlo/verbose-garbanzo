@@ -1,16 +1,36 @@
-import socket               # Import socket module
+import socket
+import time
+import asyncio
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname()  # Get local machine name
-port = 12345                # Reserve a port for your service.
-s.bind((host, port))        # Bind to the port
 
-s.listen(5)                 # Now wait for client connection.
-while True:
-    c, addr = s.accept()     # Establish connection with client.
+def main():
+    # Create a socket object
+    s = socket.socket()
+    host = socket.gethostname()
+    port = 12345
+    s.bind((host, port))
 
+    # Now wait for client connection.
+    s.listen(5)                 
+    while True:
+        # Establish connection with client.
+        c, addr = s.accept()
+        handleConnection(c, addr)
+
+
+async def handleConnection(c, addr):
     print('Got connection from', addr)
 
-    byteArray = str.encode('Thank you for connecting')
-    c.send(byteArray)
-    c.close()                # Close the connection
+    for x in range(5):
+        string = str.format('Thank you for connecting {}', x)
+        byteArray = str.encode(string)
+        c.send(byteArray)
+        await asyncio.sleep(.5)
+
+
+    c.close()
+
+
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

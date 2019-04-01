@@ -1,12 +1,14 @@
-import socket               # Import socket module
+import socket               
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 12345                # Reserve a port for your service.
+s = socket.socket()         
+host = socket.gethostname() 
+port = 12345                
 
 host = "172.25.37.209"
 
 s.connect((host, port))
 
-print(s.recv(1024))
-s.close()                     # Close the socket when done
+for x in range(5):
+    print(s.recv(1024).decode())
+
+s.close()                     
