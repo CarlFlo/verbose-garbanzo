@@ -28,4 +28,15 @@ db.dbExecute("insert into users (name,deadliftMax) values ('Al', 170)")
 db.dbExecute("insert into users (name,deadliftMax) values ('Millan', 25)")
 db.dbExecute("insert into users (name,deadliftMax) values ('Hafþór Júlíus Björnsson', 474)")
 
-db.dbExecuteAndPrint(getUsers)
+#db.dbExecuteAndPrint(getUsers)
+
+#db.getUserByName("Carl' or 1=1 or '")
+
+#db.login("Carl' or 1=1 or 'a'='a", "0")
+
+#db.dbExecuteAndPrintSafe("select * from users order by name limit 5")
+
+for i in range(10):
+    print("Ha Ha")
+
+#print(db._sanitize("!!''''' or #&/¤%&hej"))
