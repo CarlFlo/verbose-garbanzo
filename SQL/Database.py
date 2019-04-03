@@ -1,12 +1,18 @@
 import sys
 import sqlite3 as sql
-import random, string
+import random
+import string
 from os import system
 
 
 class DB():
 
-    def __init__(self, dbName):
+    def __init__(self, *args):
+
+        if len(args) > 0:
+            self.dbMakeConnection(args[0])
+
+    def dbMakeConnection(self, dbName):
         self.con = sql.connect(dbName)
 
         if self.con == None:
@@ -17,10 +23,10 @@ class DB():
     def _getConnection(self):
         return self.con
 
-    def closeConnection(self):
+    def dbCloseConnection(self):
         self.con.close()
 
-    def commit(self):
+    def dbCommit(self):
         self._getConnection().commit()
 
     def _getCursor(self):
@@ -52,7 +58,6 @@ class DB():
         result = self.dbExecute(query)
 
         self._printResult(result)
-            
 
     def dbExecuteAndPrint(self, query):
         self._printResult(self.dbExecute(query))
@@ -60,7 +65,7 @@ class DB():
     def dbDropTable(self, tableName):
         tableName = self._sanitize(tableName)
         self.dbExecute(str.format("drop table if exists {}", tableName))
-        self.commit()
+        self.dbCommit()
 
     def getVersion(self):
         cur = self.getCursor()
@@ -71,7 +76,7 @@ class DB():
         print(str.format("SQLite version: {}", data))
 
     def _printResult(self, result):
-        
+
         for row in result:
             finalStr = ""
             for elem in row:
@@ -104,37 +109,31 @@ class DB():
                 self.sanitized += c
 
         return self.sanitized
-    
+
 
 ####################
 
     def genRandomUsers(self, n):
 
-        fNames = ["Ella","Wilma","Ebba","Olivia","Astrid","Alma", "Elsa", "Alice", "Maja", 
-        "Lilly","William","Liam","Noah","Lucas","Oliver","Oscar","Elias","Hugo","Adam","Alexander","Carl"]
-        lNames = ["Smith","Jones","Taylor","Brown","Williams","Wilson","Johnson","Davies","Robinson",
-        "Wright","Thompson","Evans","Walker","White","Roberts","Green","Hall","Jackson","Clarke","Flodin"]
+        fNames = ["Ella", "Wilma", "Ebba", "Olivia", "Astrid", "Alma", "Elsa", "Alice", "Maja",
+                  "Lilly", "William", "Liam", "Noah", "Lucas", "Oliver", "Oscar", "Elias", "Hugo", "Adam", "Alexander", "Carl"]
+        lNames = ["Smith", "Jones", "Taylor", "Brown", "Williams", "Wilson", "Johnson", "Davies", "Robinson",
+                  "Wright", "Thompson", "Evans", "Walker", "White", "Roberts", "Green", "Hall", "Jackson", "Clarke", "Flodin"]
 
         for i in range(n):
-
-            #if i%10 == 0:
-            #    system(str.format("title {:.3g}%",i/n*100))
-
             fName = random.choice(fNames)
             lName = random.choice(lNames)
             username = fName + self.id_generator(8, string.digits)
             password = self.id_generator(12)
-            age = random.randint(18,60)
+            age = random.randint(18, 60)
 
             self.register(username, password, fName, lName, age)
-        
-        self.commit()
-            
-    
-    def id_generator(self, size=6, chars=string.ascii_letters + string.digits):
-        
-        return ''.join(random.choice(chars) for _ in range(size))
 
+        self.dbCommit()
+
+    def id_generator(self, size=6, chars=string.ascii_letters + string.digits):
+
+        return ''.join(random.choice(chars) for _ in range(size))
 
     def register(self, username, password, fName, lName, age):
 
@@ -154,7 +153,6 @@ class DB():
 
         print(query)
         self.dbExecuteAndPrint(query)
-
 
     def createUserTable(self):
         query = """
