@@ -36,7 +36,7 @@ class player():
         max = 255
 
         # (255, 100, 0) (0, 128, 255)
-        self.color = (rand.randint(min,max),rand.randint(min,200),rand.randint(min,200))
+        self.color = (rand.randint(min,max),rand.randint(min,max),rand.randint(min,max))
 
     def setRect(self, rect):
         self.rect = rect
@@ -68,6 +68,7 @@ class player():
 
 players.append(player("p1", 20, 20, pygame.K_UP,pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT))
 players.append(player("p2", 20, 20, pygame.K_w,pygame.K_s, pygame.K_a, pygame.K_d))
+players.append(player("p3", 20, 20, pygame.K_w,pygame.K_s, pygame.K_a, pygame.K_d))
 
 while not done:
     for event in pygame.event.get():
@@ -117,6 +118,9 @@ while not done:
     for p in players:
         if not p.alive:
             allDead = True
+        else:
+            allDead = False
+            break
     if allDead:
         done = True
 
