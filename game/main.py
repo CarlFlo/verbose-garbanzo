@@ -16,8 +16,9 @@ players = list()
 
 
 class player():
-    def __init__(self, name, sizeX, sizeY, keyUp, keyDown, keyL, keyR):
-        self.name = name   
+
+    def __init__(self, sizeX=20, sizeY=20, keyUp=pygame.K_UP, keyDown=pygame.K_DOWN, keyL=pygame.K_LEFT, keyR=pygame.K_RIGHT):
+        self.name = self.genName()
         self.sizeX = sizeX
         self.sizeY = sizeY
         self.keyUp = keyUp
@@ -30,13 +31,13 @@ class player():
         self.alive = True
         self.setColor()
 
+    def genName(self):
+        return "p"+str(len(players))
+
     def setColor(self):
-
         min = 30
-        max = 255
-
-        # (255, 100, 0) (0, 128, 255)
-        self.color = (rand.randint(min,max),rand.randint(min,max),rand.randint(min,max))
+        self.color = (rand.randint(min, 255), rand.randint(
+            min, 255), rand.randint(min, 255))  # (255, 100, 0) (0, 128, 255)
 
     def setRect(self, rect):
         self.rect = rect
@@ -47,28 +48,24 @@ class player():
     def _getRandomPosY(self):
         return rand.randint(spawnPadding, screenY-spawnPadding)
 
-    def isOutOfBounds(self):
-
-        isOut = False
+    def checkPlayersBounds(self):
 
         if self.X + self.sizeX > screenX:
             self.X = screenX - self.sizeX
-            isOut = True
         if self.X < 0:
             self.X = 0
-            isOut = True
         if self.Y + self.sizeY > screenY:
             self.Y = screenY - self.sizeY
-            isOut = True
         if self.Y < 0:
             self.Y = 0
-            isOut = True
 
-        return isOut
 
-players.append(player("p1", 20, 20, pygame.K_UP,pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT))
-players.append(player("p2", 20, 20, pygame.K_w,pygame.K_s, pygame.K_a, pygame.K_d))
-players.append(player("p3", 20, 20, pygame.K_w,pygame.K_s, pygame.K_a, pygame.K_d))
+players.append(player(20, 20, pygame.K_UP, pygame.K_DOWN,pygame.K_LEFT, pygame.K_RIGHT))
+players.append(player(20, 20, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d))
+players.append(player(20, 20, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d))
+
+for e in players:
+    print(e.name)
 
 while not done:
     for event in pygame.event.get():
@@ -84,7 +81,8 @@ while not done:
 
     for p in players:
         if not p.alive:
-            p.setRect(pygame.draw.rect(screen, p.color, pygame.Rect(p.X, p.Y, p.sizeX, p.sizeY)))
+            p.setRect(pygame.draw.rect(screen, p.color,
+                                       pygame.Rect(p.X, p.Y, p.sizeX, p.sizeY)))
             continue
 
         if pressed[p.keyUp]:
@@ -96,13 +94,9 @@ while not done:
         if pressed[p.keyR]:
             p.X += p.speed
 
-        if p.isOutOfBounds():
-            pass
-            #p.alive = False
-            #print(p.name, "is dead")
-
-        p.setRect(pygame.draw.rect(screen, p.color, pygame.Rect(p.X, p.Y, p.sizeX, p.sizeY)))
-        
+        p.checkPlayersBounds()
+        p.setRect(pygame.draw.rect(screen, p.color,
+                                   pygame.Rect(p.X, p.Y, p.sizeX, p.sizeY)))
 
     for p in players:
         if not p.alive:
@@ -113,7 +107,7 @@ while not done:
             if pygame.sprite.collide_rect(p, pp):
                 p.alive = False
                 pp.alive = False
-    
+
     allDead = False
     for p in players:
         if not p.alive:
@@ -123,8 +117,6 @@ while not done:
             break
     if allDead:
         done = True
-
-
 
     pygame.display.flip()
     clock.tick(fps)
