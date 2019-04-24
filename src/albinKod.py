@@ -7,6 +7,12 @@ headers = {
     'Accept': 'application/json'
 }
 
+
+# http://www.kulturarvsdata.se/ksamsok/api?&x-api=test&method=search&hitsPerPage=10&recordSchema=xml&query=itemType=foto AND thumbnailExists=j&fields=itemLabel,create_fromTime,thumbnail&startRecord=
+
+# http://www.kulturarvsdata.se/ksamsok/api?&x-api=test&method=search&hitsPerPage=10&recordSchema=xml&query=itemType=foto AND thumbnailExists=j&fields=create_fullName&startRecord=
+
+
 # We will work with two of K-samsöks methods search/fields for getting data
 # and statisticSearch for automatic statistics
 endpoint = 'http://www.kulturarvsdata.se/ksamsok/api'
@@ -121,15 +127,18 @@ def statistic_search(query, index):
 
 
 def stats():
-    """
+ 
     providers_statistics = statistic_search(query, index)
     print(providers_statistics)
-    """
+
     # Now lets reuse it and ask the same question
     # but for the field "dataQuality" and for all K-samsök records
-    print(statistic_search('*', 'itemLicense'))
+
+    #print(statistic_search('*', 'itemLicense')) #-------------------
     # again you can change both the query and index
     # to get other statistics
 
 
-stats()
+#stats()
+
+getrecords()
